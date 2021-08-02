@@ -2,17 +2,77 @@
 var snake = {x: 10, y: 11};
 var xMove = 5;
 var yMove = 0;
+var food = {x: 0, y: 0, is: false, number: 0};
+
+
+
+function checkCollision(){
+    var canvas= document.getElementById('Canvas');
+
+    //check snake.x if have collision with left border
+    if(snake.x < 2){
+        return 1;
+    }
+
+    //check snake.x if have collision with right border
+    if(snake.x > canvas.width-15){
+        return 1;
+    }
+    
+    //check snake.y if have collision with top border
+    if(snake.y < 2){
+        return 1;
+    }
+
+    //check snake.y if have collision with bottom border
+    if(snake.y > canvas.height-15){
+        return 1;
+    }
+    
+    
+}
+
+
+function createFood(ctx){
+    var canvas= document.getElementById('Canvas');
+    food.x = Math.floor((Math.random()*(canvas.width-10))+5);
+    food.y = Math.floor((Math.random()*(canvas.height-10))+5);
+    ctx.fillStyle="rgb(0,200,0)";
+    ctx.fillRect(food.x,food.y,6,6);
+    food.is = true;
+
+}
+
+function checkEat(ctx){
+    console.log(snake);
+    console.log(food);
+    if((snake.x <= food.x+6 && snake.x+15 >= food.x) &&
+       (snake.y <= food.y+6 && snake.y+15 >= food.y)){
+        food.is = false;
+        food.number++;
+        ctx.fillStyle="rgb(255,255,255)";
+        ctx.fillRect(food.x,food.y,6,6);
+        
+    }
+    
+
+}
 
 function movement(ctx){
     //clear old snake
     ctx.fillStyle="rgb(255,255,255)";
-    ctx.fillRect(snake.x,snake.y,6,6);
+    ctx.fillRect(snake.x,snake.y,15,15);
     //create new snake
     ctx.fillStyle="rgb(200,0,0)";
     snake.x+=xMove;
     snake.y+=yMove;
-    ctx.fillRect(snake.x,snake.y,6,6);
-    
+    ctx.fillRect(snake.x,snake.y,15,15);
+    if(food.is == false){
+        createFood(ctx);
+    }
+    else{
+        checkEat(ctx);
+    }
 
 
     var output = document.addEventListener('keydown', (event)=>{
@@ -41,17 +101,25 @@ function movement(ctx){
             //end of snake with ESC
             case 27:
                 //TODO
-                console.log('ESC');
-                return 100;          
+     //           console.log('ESC');
+       //         return 100;          
         }
 
     });
 
-    console.log(output);
+    
     //end of setInterval - doesnt work
     //TODO
-    if(output == 100){
-        console.log("END");
+
+   // if(output == 100){
+        //console.log("END");
+        //return 'end';
+   // }
+
+    var collision = checkCollision();
+    if(collision == 1){
+        console.log("collision", food.number);
+
         return 'end';
     }
 
@@ -67,18 +135,13 @@ function backGround(){
 
 
 function gameStart(ctx){
-   
-
-
-
-    var interval = window.setInterval(function(){if(movement(ctx) == 'end'){clearInterval(interval);} }, 100);
+    var interval = window.setInterval(function(){if(movement(ctx) == 'end'){clearInterval(interval);} }, 30);
     return;
 }
 
 function showTime(){
     
         var today = new Date();
-        var time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
         document.getElementById('seconds').innerHTML = today.getSeconds();
         document.getElementById('minutes').innerHTML = today.getMinutes();
         document.getElementById('hours').innerHTML = today.getHours();
@@ -94,9 +157,6 @@ function play_function(){
         console.log(pageElements[i])
     }   
 
-
-    
-
     //change background
     backGround();
 
@@ -109,13 +169,10 @@ function play_function(){
     canvas.height=screenHeight;
     var ctx = canvas.getContext("2d");
     
-
     //call function gameStart
     gameStart(ctx);
 
     
     
-    //document.getElementsByClassName("menu").style.display = "none";
-    console.log("HERE");
 
 }
