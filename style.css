@@ -1,3 +1,53 @@
+#mainScreen{
+    background-image: url(image.jpg);
+    height: 100%;
+
+
+    /* Center and scale the image nicely */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+
+}
+
 body{
-    background-color: green;
+    margin: 0;
+}
+
+#head{
+    width: 200px;  
+    height: 200px;
+    background-color: aqua;
+    position: relative;
+    right: 40px;
+    left: 40px;
+    top: 20px;
+    border-radius: 50px;
+    border-color: grey;
+    border-style: solid;
+    display: none;
+    
+}
+
+#nadpis{
+    font-size: 60px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 150px;
+
+
+}
+
+#play{
+    width: 300px;
+    background-color: coral;
+    border-radius: 50px;
+    font-size: 40px;
+    position: relative;
+    margin-left: 40%;
+    
+    top: 100px;
+
+
 }
