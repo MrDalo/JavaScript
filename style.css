@@ -36,7 +36,7 @@ body{
     font-size: 60px;
     font-weight: 600;
     text-align: center;
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 #play{
@@ -46,16 +46,45 @@ body{
     font-size: 40px;
     position: relative;
     margin-left: 40%;
+    margin-right: 38%;
     top: 100px;
 }
 
 #Canvas{
     background-color: white;
     position: relative;
-    width: 85%;
-    height: 500px;
     display: none;
     margin: 100px;
     border-style: solid;
     border-color: black;
+}
+
+#clock{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 1fr 0.5fr 1fr;
+    margin-left: 80%;
+    margin-right: 10%;
+    grid-column-gap: 0px;
+    padding-top: 30px;
+    width: auto;
+
+
+}
+
+.doubleDot{
+    font-size: 40px;
+}
+
+.time{
+  /*  border-style: solid;
+    border-color: black;
+    background-color: greenyellow;
+    */
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    width: 40px;
+    height: 40px;
+    padding-top: 25%;
 }

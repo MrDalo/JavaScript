@@ -5,25 +5,32 @@
 </head>
 <body id="main">
   <div id='mainScreen'>
-    
-    
+
+    <div id='clock' class="menu">
+      <div id='hours' class="time"></div>
+      
+      <div class='doubleDot'>:</div>
+
+      <div id='minutes' class="time"></div>
+      
+      <div class='doubleDot'>:</div>
+
+      <div id='seconds' class="time"></div>
+  </div>
+
+
     <h1 id="nadpis" class="menu">Snake Game!</h1>
 
-    
-
-    <div id="playGround">
-      <div id="head"></div>
-
-    </div>
-
-    <canvas id='Canvas'></canvas>
+    <canvas id='Canvas' height="500"></canvas>
 
     <button type="button" class="menu" id="play" onclick="play_function()">Play</button>
     
-  
-  
-  </div>
+    <script>
+      window.setTimeout(function(){showTime();}, 0);
+      window.setInterval(function(){showTime();}, 1000);
+    </script>
 
+  </div>
 
     
 </body>
