@@ -9,26 +9,23 @@ function movement(){
     document.getElementById('head').style.left = snake.x+'px';
     document.getElementById('head').style.top = snake.y+'px';
 
-
     console.log(snake);
     
 }
 
 
 function backGround(){
-    document.getElementById('main').style.backgroundColor='green';
-    document.getElementById('main').style.backgroundImage='';
-    document.getElementById('mainScreen').style.backgroundColor='green';
-    document.getElementById('mainScreen').style.backgroundImage='';
-    console.log("SOM TUUU");
-
+    document.getElementById('main').style.background='none';
+    document.getElementById('mainScreen').style.background = 'none';
+    document.getElementById('mainScreen').style.backgroundColor='88A701';
 }
 
-function gameStart(controlNumber){
-    
-   
 
+function gameStart(){
     
+
+
+
     window.setInterval(function(){movement();}, 100);
     
 }
@@ -44,16 +41,23 @@ function play_function(){
 
     //adding snake in web page
     var snake = document.getElementById('head');
-    snake.style.display = 'inline-block';
+    //snake.style.display = 'inline-block';
     snake.style.width = "10px";
     snake.style.height = "10px";
 
+    
 
-    //chagne background
+
+    //change background
     backGround();
 
+    //create playGround
+    document.getElementById("Canvas").style.display = 'initial';
+    var canvas= document.getElementById('Canvas');
+    var ctx = canvas.getContext("2d");
+
     //call function gameStart
-    gameStart(0);
+    gameStart();
 
 
     

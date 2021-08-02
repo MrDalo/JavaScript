@@ -1,23 +1,25 @@
 #mainScreen{
     background-image: url(image.jpg);
     height: 100%;
-
+    
 
     /* Center and scale the image nicely */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+   
     
 
 }
 
 body{
     margin: 0;
+    padding: 0;
+   
 }
 
 #head{
-    width: 200px;  
-    height: 200px;
+    
     background-color: aqua;
     position: relative;
     right: 40px;
@@ -35,8 +37,6 @@ body{
     font-weight: 600;
     text-align: center;
     padding-top: 150px;
-
-
 }
 
 #play{
@@ -46,8 +46,16 @@ body{
     font-size: 40px;
     position: relative;
     margin-left: 40%;
-    
     top: 100px;
+}
 
-
+#Canvas{
+    background-color: white;
+    position: relative;
+    width: 85%;
+    height: 500px;
+    display: none;
+    margin: 100px;
+    border-style: solid;
+    border-color: black;
 }
