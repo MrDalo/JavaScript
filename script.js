@@ -34,24 +34,37 @@ function checkCollision(){
 
 
 function createFood(ctx){
+    //creating food
     var canvas= document.getElementById('Canvas');
     food.x = Math.floor((Math.random()*(canvas.width-10))+5);
     food.y = Math.floor((Math.random()*(canvas.height-10))+5);
+    ctx.fillStyle="rgb(0,0,0)";
+    ctx.fillRect(food.x,food.y,8,8);
+    
+
     ctx.fillStyle="rgb(0,200,0)";
-    ctx.fillRect(food.x,food.y,6,6);
+    ctx.fillRect(food.x+2,food.y+2,4,4);
     food.is = true;
 
 }
 
 function checkEat(ctx){
-    console.log(snake);
-    console.log(food);
-    if((snake.x <= food.x+6 && snake.x+15 >= food.x) &&
-       (snake.y <= food.y+6 && snake.y+15 >= food.y)){
+
+    //condition if snake eats the food
+    if((snake.x <= food.x+8 && snake.x+15 >= food.x) &&
+       (snake.y <= food.y+8 && snake.y+15 >= food.y)){
         food.is = false;
         food.number++;
         ctx.fillStyle="rgb(255,255,255)";
-        ctx.fillRect(food.x,food.y,6,6);
+        ctx.fillRect(food.x,food.y,8,8);
+
+        //change score in user website
+        document.getElementById('scoreNumber').innerHTML = food.number;
+        
+        //winning of the game
+        if(food.number == 10){
+            return 1;
+        } 
         
     }
     
@@ -62,16 +75,30 @@ function movement(ctx){
     //clear old snake
     ctx.fillStyle="rgb(255,255,255)";
     ctx.fillRect(snake.x,snake.y,15,15);
+
     //create new snake
-    ctx.fillStyle="rgb(200,0,0)";
+    ctx.fillStyle="rgb(0,0,0)";
     snake.x+=xMove;
     snake.y+=yMove;
     ctx.fillRect(snake.x,snake.y,15,15);
+    
+    ctx.fillStyle="rgb(200,0,0)";
+    ctx.fillRect(snake.x+2,snake.y+2,11,11);
+    
+
     if(food.is == false){
         createFood(ctx);
     }
     else{
-        checkEat(ctx);
+        //winning of the game
+        if(checkEat(ctx) == 1){
+            ctx.fillStyle="rgb(0,200,0)";
+            ctx.font="100px Arial";
+            ctx.fillText("You won the game!", 200, 200);
+            document.getElementById('restart').style.display = 'inline-block';
+
+            return 'end';
+        }
     }
 
 
@@ -98,28 +125,21 @@ function movement(ctx){
                 xMove = 0;
                 yMove = 5;
                 break;
-            //end of snake with ESC
-            case 27:
-                //TODO
-     //           console.log('ESC');
-       //         return 100;          
         }
 
     });
 
     
-    //end of setInterval - doesnt work
-    //TODO
-
-   // if(output == 100){
-        //console.log("END");
-        //return 'end';
-   // }
-
+    
     var collision = checkCollision();
     if(collision == 1){
         console.log("collision", food.number);
 
+        //Losing message
+        ctx.fillStyle="rgb(200,0,0)";
+        ctx.font="100px Arial";
+        ctx.fillText("You lost the game!", 200, 200);
+        document.getElementById('restart').style.display = 'inline-block';
         return 'end';
     }
 
@@ -156,6 +176,14 @@ function play_function(){
         pageElements[i].style.display = 'none';
         console.log(pageElements[i])
     }   
+    //display none - restart button
+    document.getElementById('restart').style.display = 'none';
+
+    //clear global variables if restart button is pressed
+    snake = {x: 10, y: 11};
+    xMove = 5;
+    yMove = 0;
+    food = {x: 0, y: 0, is: false, number: 0};
 
     //change background
     backGround();
@@ -164,10 +192,15 @@ function play_function(){
     document.getElementById("Canvas").style.display = 'initial';
     var canvas= document.getElementById('Canvas');
     var screenWidth = screen.width-220;
-    var screenHeight = screen.height-320;
+    var screenHeight = screen.height-400;
     canvas.width=screenWidth;
     canvas.height=screenHeight;
     var ctx = canvas.getContext("2d");
+
+    //nadpis
+    document.getElementById("nadpis").style.paddingTop = "40px";
+    //score
+    document.getElementById('score').style.display = 'inline-block';
     
     //call function gameStart
     gameStart(ctx);

@@ -19,10 +19,12 @@
   </div>
 
 
-    <h1 id="nadpis" class="menu">Snake Game!</h1>
+    <h1 id="nadpis">Snake Game!</h1>
 
-    <canvas id='Canvas' height="500"></canvas>
-
+    
+    <canvas id='Canvas' ></canvas>
+    <div id='score'>Score: <span id='scoreNumber'>0</span></div>
+    <button type="button" id="restart" onclick="play_function()">Restart</button>
     <button type="button" class="menu" id="play" onclick="play_function()">Play</button>
     
     <script>

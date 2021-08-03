@@ -55,6 +55,8 @@ body{
     position: relative;
     display: none;
     margin: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     border-style: solid;
     border-color: black;
 }
@@ -77,14 +79,35 @@ body{
 }
 
 .time{
-  /*  border-style: solid;
+    border-style: solid;
     border-color: black;
     background-color: greenyellow;
-    */
     text-align: center;
     font-size: 30px;
     font-weight: 600;
     width: 40px;
     height: 40px;
     padding-top: 25%;
+}
+
+#score{
+    display: none;
+    position: relative;
+    font-size: 30px;
+    font-weight: 600;
+    float: right;
+    padding-top: 20px;
+    padding-right: 300px;
+}
+
+#restart{
+    display: none;
+    width: 200px;
+    background-color: coral;
+    border-radius: 50px;
+    font-size: 30px;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 300px;
+    float: left;
 }
