@@ -162,9 +162,25 @@ function gameStart(ctx){
 function showTime(){
     
         var today = new Date();
-        document.getElementById('seconds').innerHTML = today.getSeconds();
-        document.getElementById('minutes').innerHTML = today.getMinutes();
-        document.getElementById('hours').innerHTML = today.getHours();
+        let seconds = today.getSeconds();
+        let minutes = today.getMinutes();
+        let hours   = today.getHours();
+
+        if(seconds < 10){
+            seconds = '0'+seconds;
+        }
+
+        if(minutes < 10){
+            minutes = '0'+minutes;
+        }
+
+        if(hours < 10){
+            hours = '0'+hours;
+        }
+        
+        document.getElementById('seconds').innerHTML = seconds;
+        document.getElementById('minutes').innerHTML = minutes;
+        document.getElementById('hours').innerHTML = hours;
             
 }
 
