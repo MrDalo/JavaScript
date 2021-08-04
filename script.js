@@ -36,8 +36,8 @@ function checkCollision(){
 function createFood(ctx){
     //creating food
     var canvas= document.getElementById('Canvas');
-    food.x = Math.floor((Math.random()*(canvas.width-10))+5);
-    food.y = Math.floor((Math.random()*(canvas.height-10))+5);
+    food.x = Math.floor((Math.random()*(canvas.width-25))+5);
+    food.y = Math.floor((Math.random()*(canvas.height-25))+5);
     ctx.fillStyle="rgb(0,0,0)";
     ctx.fillRect(food.x,food.y,8,8);
     
